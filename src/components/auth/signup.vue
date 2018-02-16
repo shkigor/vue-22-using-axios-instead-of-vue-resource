@@ -69,6 +69,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     data () {
       return {
@@ -101,8 +103,11 @@
           country: this.country,
           hobbies: this.hobbyInputs.map(hobby => hobby.value),
           terms: this.terms
-        }
-        console.log(formData)
+        };
+        console.log(formData);
+        axios.post('https://vuejs-http-23956.firebaseio.com/users.json', formData) // put() if we wonna pass one object
+            .then(res => console.log(res))
+            .catch(error => console.log(error));
       }
     }
   }
